@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/csv_layers_list" >
+        <file>icon.png</file>
+    </qresource>
+</RCC>
