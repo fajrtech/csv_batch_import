@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QTreeWidgetItem, QFileDialog, QAction
 from PyQt5.QtCore import Qt
 from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication
 from qgis.PyQt.QtGui import QIcon, QColor
-from qgis.PyQt.QtWidgets import QAction
+from qgis.PyQt.QtWidgets import QAction, QDialog
 from qgis.gui import QgsProjectionSelectionDialog
 from qgis.core import QgsVectorLayer, QgsProject, QgsLayerTreeGroup, QgsLayerTreeLayer, QgsCoordinateReferenceSystem
 
@@ -265,7 +265,7 @@ class CsvLayersList:
         self.dir_list = []
         self.csv_lst = []
         # get full path and base name and the remaining path outside tree
-        self.path = selected_directory =  os.path.normpath(QFileDialog.getExistingDirectory(None, 'Select Directory', self.path))
+        self.path = selected_directory = os.path.normpath(QFileDialog.getExistingDirectory(None, 'Select Directory', self.path))
         self.dlg.rootDirLineEdit.setText(selected_directory)
 
         if selected_directory:
@@ -457,13 +457,21 @@ class CsvLayersList:
         """The function allows the user to select a CRS from the QgsProjectionSelectionDialog
         and updates the combo box's current text accordingly."""
         dialog = QgsProjectionSelectionDialog()
-        dialog.exec_()
+        result = dialog.exec_()
 
         crs = dialog.crs()
         crs_description = QgsCoordinateReferenceSystem(crs).description()
         crs_authid = QgsCoordinateReferenceSystem(crs).authid()
-        self.dlg.crs_cmbBox.addItem(crs_authid + ' - ' + crs_description)
-        self.dlg.crs_cmbBox.setCurrentText(crs_authid + ' - ' + crs_description)
+
+        # check if there's CRS selected or not
+        if crs_description and crs_authid and result == QDialog.Accepted:
+            index = self.dlg.crs_cmbBox.findText(crs_authid + ' - ' + crs_description)
+            # check if item exists in the combo box
+            if index != -1:
+                self.dlg.crs_cmbBox.setCurrentText(crs_authid + ' - ' + crs_description)
+            else:
+                self.dlg.crs_cmbBox.addItem(crs_authid + ' - ' + crs_description)
+                self.dlg.crs_cmbBox.setCurrentText(crs_authid + ' - ' + crs_description)
 
     def evt_itm_selected(self, item):
         """The function manages the selection of items in the tree and updates the corresponding
