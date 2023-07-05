@@ -308,6 +308,7 @@ class CsvLayersList:
                     self.dlg.xfield_cmbBox.addItems(header_list)
                     self.dlg.yfield_cmbBox.addItems(header_list)
         else:
+            self.dlg.rootDirLineEdit.clear()
             self.dlg.rootDirLineEdit.setPlaceholderText('Please select a directory')
             self.iface.messageBar().pushMessage('Please select a directory', level=1)
 
