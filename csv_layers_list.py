@@ -267,8 +267,11 @@ class CsvLayersList:
         # get full path and base name and the remaining path outside tree
         self.path = selected_directory = QFileDialog.getExistingDirectory(None, 'Select Directory', self.path)
 
+        # check if a path returned ot not
         if selected_directory:
+            # normalize path
             selected_directory = os.path.normpath(selected_directory)
+            # add path to edit line
             self.dlg.rootDirLineEdit.setText(selected_directory)
             # clear previous Qtree
             self.dlg.csv_tree.clear()
@@ -308,8 +311,11 @@ class CsvLayersList:
                     self.dlg.xfield_cmbBox.addItems(header_list)
                     self.dlg.yfield_cmbBox.addItems(header_list)
         else:
+            # clear edit line
             self.dlg.rootDirLineEdit.clear()
+            # set placeholder in edit line
             self.dlg.rootDirLineEdit.setPlaceholderText('Please select a directory')
+            # pop up warning msg
             self.iface.messageBar().pushMessage('Please select a directory', level=1)
 
     def file_is_valid(self, fpath):
