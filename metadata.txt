@@ -12,8 +12,8 @@ email=contact@fajr.tech
 
 about=Batch import of CSV/TSV vector layers
 
-tracker=http://bugs
-repository=http://repo
+tracker=http:https://github.com/fajrtech/csv_batch_import/issues
+repository=http:https://github.com/fajrtech/csv_batch_import
 # End of mandatory metadata
 
 # Recommended items:
@@ -23,7 +23,7 @@ hasProcessingProvider=no
 # changelog=
 
 # Tags are comma separated with spaces allowed
-tags=python
+tags=python,vector,csv,tsv,list,layer,import
 
 homepage=https://fajr.tech
 category=Vector
