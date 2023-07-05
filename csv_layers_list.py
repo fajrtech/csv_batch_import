@@ -265,12 +265,12 @@ class CsvLayersList:
         self.dir_list = []
         self.csv_lst = []
         # get full path and base name and the remaining path outside tree
-        self.path = selected_directory = QFileDialog.getExistingDirectory(None, 'Select Directory', self.path)
+        selected_directory = QFileDialog.getExistingDirectory(None, 'Select Directory', self.path)
 
         # check if a path returned ot not
         if selected_directory:
             # normalize path
-            selected_directory = os.path.normpath(selected_directory)
+            self.path = selected_directory = os.path.normpath(selected_directory)
             # add path to edit line
             self.dlg.rootDirLineEdit.setText(selected_directory)
             # clear previous Qtree
