@@ -3,7 +3,7 @@ from PyQt5.QtCore import Qt
 from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication
 from qgis.PyQt.QtGui import QIcon, QColor
 from qgis.PyQt.QtWidgets import QAction, QDialog
-from qgis.gui import QgsProjectionSelectionDialog
+from qgis.gui import QgsProjectionSelectionDialog, QgsMessageBar
 from qgis.core import QgsVectorLayer, QgsProject, QgsLayerTreeGroup, QgsLayerTreeLayer, QgsCoordinateReferenceSystem
 
 import os.path
@@ -265,10 +265,11 @@ class CsvLayersList:
         self.dir_list = []
         self.csv_lst = []
         # get full path and base name and the remaining path outside tree
-        self.path = selected_directory = os.path.normpath(QFileDialog.getExistingDirectory(None, 'Select Directory', self.path))
-        self.dlg.rootDirLineEdit.setText(selected_directory)
+        self.path = selected_directory = QFileDialog.getExistingDirectory(None, 'Select Directory', self.path)
 
         if selected_directory:
+            selected_directory = os.path.normpath(selected_directory)
+            self.dlg.rootDirLineEdit.setText(selected_directory)
             # clear previous Qtree
             self.dlg.csv_tree.clear()
 
@@ -306,6 +307,9 @@ class CsvLayersList:
                     # Add the column names to the QComboBox
                     self.dlg.xfield_cmbBox.addItems(header_list)
                     self.dlg.yfield_cmbBox.addItems(header_list)
+        else:
+            self.dlg.rootDirLineEdit.setPlaceholderText('Please select a directory')
+            self.iface.messageBar().pushMessage('Please select a directory', level=1)
 
     def file_is_valid(self, fpath):
         """The function checks if file is valid as a layer or not, and also return a layer if it's valid"""
@@ -586,6 +590,9 @@ class CsvLayersList:
 
         # clear crs combo box every time we run plugin
         self.dlg.crs_cmbBox.clear()
+
+        # clear all warning messages every time we run plugin
+        self.iface.messageBar().clearWidgets()
 
         # get recent CRS authority identifier in list
         self.recent_crs_lst = QSettings().value('UI/recentProjectionsAuthId')
