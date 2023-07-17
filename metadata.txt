@@ -12,8 +12,8 @@ email=contact@fajr.tech
 
 about=Batch import of CSV/TSV vector layers
 
-tracker=http:https://github.com/fajrtech/csv_batch_import/issues
-repository=http:https://github.com/fajrtech/csv_batch_import
+tracker=https://github.com/fajrtech/csv_batch_import/issues
+repository=https://github.com/fajrtech/csv_batch_import
 # End of mandatory metadata
 
 # Recommended items:
