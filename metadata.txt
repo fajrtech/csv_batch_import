@@ -5,12 +5,12 @@
 [general]
 name=CSV Batch Import
 qgisMinimumVersion=3.0
-description=Batch import of CSV/TSV vector layers
+description=Batch import of CSV vector layers
 version=0.1
 author=Fajr.tech
 email=contact@fajr.tech
 
-about=Batch import of CSV/TSV vector layers
+about=Batch import of CSV vector layers. With a few clicks you can import a batch of CSV files by selecting their parent directory. The plugin will create layers groups/sub-group to match the CSV files hierarchy.
 
 tracker=https://github.com/fajrtech/csv_batch_import/issues
 repository=https://github.com/fajrtech/csv_batch_import
