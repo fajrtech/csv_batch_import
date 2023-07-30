@@ -6,7 +6,7 @@
 name=CSV Batch Import
 qgisMinimumVersion=3.0
 description=Batch import of CSV vector layers
-version=0.1
+version=0.2
 author=Fajr.tech
 email=contact@fajr.tech
 
