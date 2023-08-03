@@ -6,7 +6,7 @@
 name=CSV Batch Import
 qgisMinimumVersion=3.0
 description=Batch import of CSV vector layers
-version=0.2
+version=0.3
 author=Fajr.tech
 email=contact@fajr.tech
 
@@ -25,7 +25,7 @@ hasProcessingProvider=no
 # Tags are comma separated with spaces allowed
 tags=python,CSV,TSV
 
-homepage=https://fajr.tech
+homepage=https://github.com/fajrtech/csv_batch_import
 category=Vector
 icon=icon.png
 # experimental flag
